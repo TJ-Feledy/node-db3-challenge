@@ -35,8 +35,11 @@ function add(scheme) {
     })
 }
 
-function update() {
-  return
+function update(changes, id) {
+  return db('schemes').where({id}).update(changes)
+    .then(count => {
+      return findById(id)
+    })
 }
 
 function remove() {
