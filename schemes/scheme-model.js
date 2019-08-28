@@ -21,8 +21,11 @@ function findById(id) {
   }
 }
 
-function findSteps() {
-  return
+function findSteps(scheme_id) {
+  return db('steps as s')
+  .join('schemes as sc', 'sc.id', 's.scheme_id')
+  .select('sc.scheme_name', 's.step_number', 's.instructions')
+  .where(scheme_id)
 }
 
 function add() {
